@@ -128,8 +128,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="gates.cpp" />
+    <ClCompile Include="nn.cpp" />
     <ClCompile Include="twice.cpp" />
     <ClCompile Include="gates-2n.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="nn.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
