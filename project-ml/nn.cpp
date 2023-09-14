@@ -40,9 +40,9 @@ float cost(Xor m, Mat ti, Mat to)
 	NN_ASSERT(to.cols == m.a2.cols);
 
 	size_t n = ti.rows;
-
+	
 	float c = 0;
-	for (size_t i = 0; i < n; ++n) {
+	for (size_t i = 0; i < n; ++i) {
 		Mat x = mat_row(ti, i);
 		Mat y = mat_row(to, i);
 
@@ -69,7 +69,7 @@ void finite_diff(Xor m, Xor g, float eps, Mat ti, Mat to)
 			saved = MAT_AT(m.w1, i, j);
 			MAT_AT(m.w1, i, j) += eps;
 			MAT_AT(g.w1, i, j) = (cost(m, ti, to) - c) / eps;
-			MAT_AT(g.w1, i, j) = saved;
+			MAT_AT(m.w1, i, j) = saved;
 		}
 	}
 	
@@ -78,7 +78,7 @@ void finite_diff(Xor m, Xor g, float eps, Mat ti, Mat to)
 			saved = MAT_AT(m.b1, i, j);
 			MAT_AT(m.b1, i, j) += eps;
 			MAT_AT(g.b1, i, j) = (cost(m, ti, to) - c) / eps;
-			MAT_AT(g.b1, i, j) = saved;
+			MAT_AT(m.b1, i, j) = saved;
 		}
 	}
 
@@ -87,7 +87,7 @@ void finite_diff(Xor m, Xor g, float eps, Mat ti, Mat to)
 			saved = MAT_AT(m.w2, i, j);
 			MAT_AT(m.w2, i, j) += eps;
 			MAT_AT(g.w2, i, j) = (cost(m, ti, to) - c) / eps;
-			MAT_AT(g.w2, i, j) = saved;
+			MAT_AT(m.w2, i, j) = saved;
 		}
 	}
 
@@ -96,7 +96,7 @@ void finite_diff(Xor m, Xor g, float eps, Mat ti, Mat to)
 			saved = MAT_AT(m.b2, i, j);
 			MAT_AT(m.b2, i, j) += eps;
 			MAT_AT(g.b2, i, j) = (cost(m, ti, to) - c) / eps;
-			MAT_AT(g.b2, i, j) = saved;
+			MAT_AT(m.b2, i, j) = saved;
 		}
 	}
 }
@@ -105,25 +105,25 @@ void learn(Xor m, Xor g, float rate)
 {
 	for (size_t i = 0; i < m.w1.rows; ++i) {
 		for (size_t j = 0; j < m.w1.cols; ++j) {
-			MAT_AT(m.w1, i, j) -= rate * MAT_AT(m.w1, i, j);
+			MAT_AT(m.w1, i, j) -= rate * MAT_AT(g.w1, i, j);
 		}
 	}
 
 	for (size_t i = 0; i < m.b1.rows; ++i) {
 		for (size_t j = 0; j < m.b1.cols; ++j) {
-			MAT_AT(m.b1, i, j) -= rate * MAT_AT(m.b1, i, j);
+			MAT_AT(m.b1, i, j) -= rate * MAT_AT(g.b1, i, j);
 		}
 	}
 
 	for (size_t i = 0; i < m.w2.rows; ++i) {
 		for (size_t j = 0; j < m.w2.cols; ++j) {
-			MAT_AT(m.w2, i, j) -= rate * MAT_AT(m.w2, i, j);
+			MAT_AT(m.w2, i, j) -= rate * MAT_AT(g.w2, i, j);
 		}
 	}
 
 	for (size_t i = 0; i < m.b2.rows; ++i) {
 		for (size_t j = 0; j < m.b2.cols; ++j) {
-			MAT_AT(m.b2, i, j) -= rate * MAT_AT(m.b2, i, j);
+			MAT_AT(m.b2, i, j) -= rate * MAT_AT(g.b2, i, j);
 		}
 	}
 }
@@ -166,12 +166,14 @@ int main()
 	float eps = 1e-1;
 	float rate = 1e-1;
 
-	printf("cost = %f\n", cost(m, ti, to));
-	finite_diff(m, g, eps, ti, to);
-	learn(m, g, rate);
-	printf("cost = %f\n", cost(m, ti, to));
+	for (size_t i = 0; i < 10*1000; i++) {
+		//printf("cost = %f\n", cost(m, ti, to));
+		finite_diff(m, g, eps, ti, to);
+		learn(m, g, rate);
+	}
 
-#if  0
+	//printf("cost = %f\n", cost(m, ti, to));
+
 	for (size_t i = 0; i < 2; ++i) {
 		for (size_t j = 0; j < 2; ++j) {
 			MAT_AT(m.a0, 0, 0) = i;
@@ -182,6 +184,5 @@ int main()
 			printf("%zu ^ %zu = %f\n", i, j, y);
 		}
 	}
-#endif
 	return 0;
 }
