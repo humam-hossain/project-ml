@@ -27,6 +27,9 @@
     <ClCompile Include="nn.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="xor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nn.h">

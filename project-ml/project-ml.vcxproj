@@ -131,6 +131,7 @@
     <ClCompile Include="nn.cpp" />
     <ClCompile Include="twice.cpp" />
     <ClCompile Include="gates-2n.cpp" />
+    <ClCompile Include="xor.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="nn.h" />
