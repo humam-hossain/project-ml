@@ -1,6 +1,6 @@
-PWD e:\github_repo\nn\pdf
+PWD e:\github_repo\project-ml\pdf
 INPUT C:\Users\User\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT e:\github_repo\nn\pdf\grad.tex
+INPUT e:\github_repo\project-ml\pdf\grad.tex
 OUTPUT grad.log
 INPUT C:\Users\User\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
 INPUT C:\Users\User\AppData\Local\Programs\MiKTeX\tex\latex\base\article.cls
