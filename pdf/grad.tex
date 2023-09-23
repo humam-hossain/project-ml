@@ -207,14 +207,14 @@ Let's assume that we have $m$ layers.
 Let's denote $C'^{(m+1)}_{a_i^{(m)}}$ as $a_i^{(m)} - y_i$.
 \begin{align}
     C^{(l)}              & = \asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2                                     \\
-    C^{(l)}_{w^{(l)}}    & = \left(\asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{w^{(l)}}             \\
+    C'^{(l)}_{w^{(l)}}    & = \left(\asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{w^{(l)}}             \\
                          & = \asum[i, n] \left((C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{w^{(l)}}             \\
                          & = \asum[i, n] 2(C'^{(l+1)}_{a_i^{(l)}})(a^{(l)}_i)'_{w^{(l)}}                \\
                          & = \asum[i, n] 2C'^{(l+1)}_{a_i^{(l)}}a^{(l)}_i(1 - a^{(l)}_i)a_i^{(0)}       \\
-    C^{(l)}_{b^{(l)}}    & = \left(\asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{b^{(l)}}             \\
+    C'^{(l)}_{b^{(l)}}    & = \left(\asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{b^{(l)}}             \\
                          & = \asum[i, n] 2(C'^{(l+1)}_{a_i^{(l)}})(a^{(l)}_i)'_{b^{(l)}}                \\
                          & = \asum[i, n] 2C'^{(l+1)}_{a_i^{(l)}}a^{(l)}_i(1 - a^{(l)}_i)                \\
-    C'^{l+1}_{a_i^{(l)}} & = \left(\asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{a_i^{(l)}}           \\
+    C'^{(l+1)}_{a_i^{(l)}} & = \left(\asum[i, n] (C'^{(l+1)}_{a_i^{(l)}})^2\right)'_{a_i^{(l)}}           \\
                          & = \asum[i, n] ((C'^{(l+1)}_{a_i^{(l)}})^2)'_{a_i^{(l)}}                      \\
                          & = \asum[i, n] 2(C'^{(l+1)}_{a_i^{(l)}})(C'^{(l+1)}_{a_i^{(l)}})'_{a_i^{(l)}} \\
                          & = \asum[i, n] 2(C'^{(l+1)}_{a_i^{(l)}})(a_i^{l+1})'_{a_i^{(l)}}              \\
